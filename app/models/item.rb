@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   attr_accessor :document_data
   before_validation :parse_image
 
-  has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :picture, url: "/system/:class/:attachment/:id/:style/:filename", styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment :picture, presence: true
   do_not_validate_attachment_file_type :picture
 
