@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20160428165017) do
 
-  create_table "documents", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "documents", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "item_id"
     t.datetime "created_at", null: false
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160428165017) do
     t.index ["item_id"], name: "index_documents_on_item_id"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
@@ -35,4 +38,5 @@ ActiveRecord::Schema.define(version: 20160428165017) do
     t.datetime "picture_updated_at"
   end
 
+  add_foreign_key "documents", "items"
 end
