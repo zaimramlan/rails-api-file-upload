@@ -11,7 +11,7 @@ class Document < ApplicationRecord
   def parse_file
     p file_contents
     file = Paperclip.io_adapters.for(file_contents)
-    file.original_filename = "pdfile.file"
+    file.original_filename = "pdfile.pdf"
     self.file = file
   end
 end
